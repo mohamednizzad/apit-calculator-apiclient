@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Client to Get the Advance Personal Income Tax (APIT) Details</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+
+	<script type="text/javascript">
+		function Calculate()
+		{
+			var value = document.getElementById("income").value;
+			
+			const xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("GET","https://52zydqrp26.execute-api.us-east-2.amazonaws.com/default/apit-api?income="+value);
+			xmlhttp.send();
+
+			xmlhttp.onload = function()
+			{
+				var myobject = JSON.parse(this.responseText);
+				if (myobject.status == "Fail")
+				{
+					alert("Something went wrong");
+				}
+				else
+				{
+					document.getElementById("month").innerHTML = myobject.income;
+					document.getElementById("status").innerHTML = myobject.status;
+					document.getElementById("tax").innerHTML = myobject.tax;
+					document.getElementById("incomeaftertax").innerHTML = myobject.salaryaftertax;
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h3 class="text-center">
+						Advance Personal Income Tax Calculator
+					</h3>
+					<p>
+						Disclaimer: This application is developed for the sole purpose of demonstrating the Invocation of AWS Lambda Function through API Gateway, Provisioning it as a Rest API and Accessing via API Client.<b class="text-danger"> This should not be taken as an advise for calculation of tax.
+						<a href="http://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20%E2%80%93%201/02.APIT_2223_Table_01.pdf" target="blank">Refer this table</a> for additional information.</b>
+					</p>
+				</div>
+				<div class="form-group">
+					Enter your monthly salary<br>
+					<input placeholder="Amount in Rs." type="number" id="income" class="form-control">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-success" onclick="Calculate()">Calculate</button>
+				</div>
+			</div>
+		</div>
+	
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4 class="text-center">APIT Status</h4>
+
+			<ul class="list-group">
+			  <li class="list-group-item">Monthly Income: <b id="month"></b></li>
+			  <li class="list-group-item">Tax Status: <b id="status"></b></li>
+			  <li class="list-group-item">Monthly Tax: <b id="tax"></b></li>
+			  <li class="list-group-item">Monthly Income After Tax: <b id="incomeaftertax"></b></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<footer>
+	  <div class="text-center p-4" style="background-color:black;">Designed by Nizzad (AWS Certified Solutions Architect)
+    <a class="text-reset fw-bold" href=""></a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+</body>
+</html>
