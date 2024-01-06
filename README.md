@@ -15,7 +15,7 @@ This project is designed and developed for the purpose of demonstrating the capa
 - Note: There is no guarantee for the availability of the API EndPoint as this is hosted for the purpose of learning and demonstration
 
 # Working Demo of the Client
-- A Working Demo of the Project can be experimented here at https://projectdemobynizzad.000webhostapp.com/apit-api-client.html
+- A Working Demo of the Project can be experimented here at http://apit-demo.s3-website-us-east-1.amazonaws.com/
 
 # Disclaimer
 This application is developed for the sole purpose of demonstrating the Invocation of AWS Lambda Function through API Gateway, Provisioning it as a Rest API and Accessing via API Client.<b class="text-danger"> This should not be taken as an advise for calculation of tax.
